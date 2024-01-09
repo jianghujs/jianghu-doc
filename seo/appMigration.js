@@ -23,7 +23,7 @@ const configFile = require('./config/config.' + env)({baseDir: ''});
 // 获取egg config local 环境的 knex 配置
 const currentKnexConfig = configFile.knex.client;
 const targetKnexConfig = _.cloneDeep(currentKnexConfig);
-targetKnexConfig.connection.database = 'cn_openjianghu_v2';
+targetKnexConfig.connection.database = 'jianghu_doc';
 const jhId = configFile.jianghuConfig.jhIdConfig.jhId;
 
 // 获取默认支持jhId的表
