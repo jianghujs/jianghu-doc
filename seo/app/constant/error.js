@@ -21,6 +21,8 @@ class BizError extends Error {
 }
 
 const errorInfoEnum = Object.freeze({
+  user_banned: { errorCode: "user_banned", errorReason: "账号被封禁! 请联系管理员。" },
+  user_status_error: { errorCode: "user_status_error", errorReason: "用户状态异常! " },
   data_expection: {
     errorCode: "data_expection",
     errorReason: "数据异常",

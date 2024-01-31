@@ -58,4 +58,9 @@ module.exports.articlePublishStatusEnum = Object.freeze({
   deleted: "deleted",
 });
 
+module.exports.userStatusEnum = Object.freeze({
+  active: 'active',
+  banned: 'banned',
+});
+
 

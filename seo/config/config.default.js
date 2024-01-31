@@ -102,7 +102,7 @@ module.exports = (appInfo) => {
         const appId = ctx.app.config.appId
         ctx.app.logger.error("[config.default.js] onerror html:", error);
         const { errorCode, errorReason } = error;
-        ctx.redirect(`/${appId}/page/home?errorCode=${errorCode}&errorReason=${errorReason}`);
+        ctx.redirect(`/${appId}/directory?errorCode=${errorCode}&errorReason=${errorReason}`);
       },
     },     
     siteFile: {
