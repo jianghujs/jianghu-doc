@@ -67,15 +67,13 @@ class ArticleService extends Service {
       let articleTitleShow = articleTitle;
       if (articleTitleShow.startsWith('_')) {
         articleTitleShow = articleTitleShow.replace(/^_[0-9]*_/, "");
-      } else if (articleTitleIgnoreReg.test(articleTitleShow)) {
-        articleTitleShow = articleTitleShow.replace('_', '课-');
       }
       return {
         ...item,
-        articleTitle: articleTitleShow,
+        articleTitle,
         articleTitleMap: {
-          prefix: articleTitle.includes('_') && !articleTitle.startsWith('_')  ? articleTitle.split('_')[0] : '',
-          text: articleTitle.includes('_') ? '课-' + articleTitle.split('_')[1] : articleTitle,
+          prefix: articleTitle.includes('_') ? articleTitle.split('_')[0] : '',
+          text: articleTitle.includes('_') ? '课-' + articleTitle.split('_')[1] : articleTitleShow,
         },
       }
     }) 
