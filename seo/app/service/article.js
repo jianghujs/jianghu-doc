@@ -64,11 +64,17 @@ class ArticleService extends Service {
     let categoryArticleData = await jianghuKnex(tableEnum.view01_article).where(whereObj).whereIn('articlePublishStatus', articlePublishStatus).orderBy('articleTitle', 'asc').select();
     categoryArticleData = _.map(categoryArticleData, item => {
       const { articleTitle } = item;
+      let articleTitleShow = articleTitle;
+      if (articleTitleShow.startsWith('_')) {
+        articleTitleShow = articleTitleShow.replace(/^_[0-9]*_/, "");
+      } else if (articleTitleIgnoreReg.test(articleTitleShow)) {
+        articleTitleShow = articleTitleShow.replace('_', '课-');
+      }
       return {
         ...item,
-        articleTitle: articleTitle.includes('_') ? articleTitle.replace('_', '课-') : articleTitle,
+        articleTitle: articleTitleShow,
         articleTitleMap: {
-          prefix: articleTitle.includes('_') ? articleTitle.split('_')[0] : '',
+          prefix: articleTitle.includes('_') && !articleTitle.startsWith('_')  ? articleTitle.split('_')[0] : '',
           text: articleTitle.includes('_') ? '课-' + articleTitle.split('_')[1] : articleTitle,
         },
       }
