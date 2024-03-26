@@ -126,6 +126,8 @@ class ArticleService extends Service {
     // 把articleContentForSeo里的<a>标签都以新页面的方式打开，添加上target="_blank"
     article.articleContentForSeo = article.articleContentForSeo.replace(/<a/g, '<a target="_blank"');
     article.articleContentForSeoByCodeView = await this.parseSeo(article.articleContentForSeo);
+    // 一二级标题判断
+    article.hasOutline = /^#{1,2} .*/.test(article.articleContent);
 
     return article;
   }

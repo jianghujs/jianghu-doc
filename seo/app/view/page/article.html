@@ -148,6 +148,7 @@
     <div class="jianghu-doc-contentDoc">
       <div class="jianghu-doc-contentDoc-container">
         <!-- 文档大纲 -->
+        {% if article.hasOutline %}
         <div class="jianghu-doc-contentDoc-aside">
           <div class="jianghu-doc-contentDoc-aside-container">
             <div class="jianghu-doc-contentDoc-aside-outline">
@@ -159,6 +160,7 @@
             </div>
           </div>
         </div>
+        {% endif %}
         <!-- 文档正文 -->
         <div class="jianghu-doc-contentDoc-content">
           <div class="jianghu-doc-contentDoc-main">
