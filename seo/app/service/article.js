@@ -68,12 +68,18 @@ class ArticleService extends Service {
       if (articleTitleShow.startsWith('_')) {
         articleTitleShow = articleTitleShow.replace(/^_[0-9]*_/, "");
       }
+      let articleText = articleTitleShow;
+      if (articleTitle.startsWith('_')) {
+        articleText = articleTitle.replace(/^_[0-9]*_/, "");
+      } else if (articleTitle.includes('_')) {
+        articleText = '课-' + articleTitle.split('_').pop();
+      }
       return {
         ...item,
         articleTitle,
         articleTitleMap: {
           prefix: articleTitle.includes('_') ? articleTitle.split('_')[0] : '',
-          text: articleTitle.includes('_') ? '课-' + articleTitle.split('_')[1] : articleTitleShow,
+          text: articleText,
         },
       }
     }) 
@@ -112,7 +118,7 @@ class ArticleService extends Service {
     });
 
     // 处理文章数据
-    article.articleTitle = article.articleTitle.replace(articleTitleIgnoreReg, "");
+    article.articleTitle = article.articleTitle.replace(/^_?[0-9]*_/, "");
     article.articleList = categoryGroupArticleList;
     article.categoryGroupArticleList = categoryGroupArticleList;
     article.commentList = commentList;
